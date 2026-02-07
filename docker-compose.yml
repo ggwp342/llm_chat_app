@@ -1,0 +1,19 @@
+services:
+  ai-assistant:
+    # Build the image from the Dockerfile in the current directory
+    build: . 
+    
+    # Name the container for easy identification
+    container_name: ai_chat_container
+    
+    # Map ports [Host Machine : Container]
+    ports:
+      - "8501:8501" # Access Streamlit at http://localhost:8501
+      - "8000:8000" # Access FastAPI at http://localhost:8000
+    
+    # MAGIC: Load variables from .env file automatically
+    env_file:
+      - .env
+    
+    # (Optional) restart policy
+    restart: always
